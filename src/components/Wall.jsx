@@ -1,9 +1,13 @@
 import React from 'react'
 import MyAvatar from '../images/MyAvatar.jpg'
+import { Paginator } from '../assets/Paginator'
 
 export const Wall = () => {
 
    const [posts, setPosts] = React.useState([])
+
+   const [currentPage, setCurrentPage] = React.useState(1)
+
    const [value, setValue] = React.useState('')
    const prevDef = (event) => {
       event.preventDefault()
@@ -11,7 +15,12 @@ export const Wall = () => {
       setValue('')
    }
 
+   const paginate = (pageNumber) => {
+      setCurrentPage(pageNumber)
+   }
 
+   const currentPost = posts.slice(0, 5)
+   console.log(currentPost);
 
    return (
       <div className="Main">
@@ -31,16 +40,17 @@ export const Wall = () => {
 
 
 
-            {       
-               
+            {
                posts.map((el, index) =>
-                  el&&
+                  el &&
                   <div className="postOnMyWall" >
                      <img src={MyAvatar} alt="" />
                      <p>{el}</p>
                   </div>
-
-            )
+               )
+            }
+            {
+               posts.length >= 5 && <Paginator arr={posts} paginate={paginate} />
             }
 
          </div>
