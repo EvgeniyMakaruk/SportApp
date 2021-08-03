@@ -5,9 +5,6 @@ import { Paginator } from '../assets/Paginator'
 export const Wall = () => {
 
    const [posts, setPosts] = React.useState([])
-
-   const [currentPage, setCurrentPage] = React.useState(1)
-
    const [value, setValue] = React.useState('')
    const prevDef = (event) => {
       event.preventDefault()
@@ -15,12 +12,16 @@ export const Wall = () => {
       setValue('')
    }
 
+
+   const [currentPage, setCurrentPage] = React.useState(1)
+   const [postsPerPage] = React.useState(5)
+   const LastPostIndex = currentPage * postsPerPage
+   const firstPostIndex = LastPostIndex - postsPerPage
+   const currentPost = posts.slice(firstPostIndex, LastPostIndex)
    const paginate = (pageNumber) => {
       setCurrentPage(pageNumber)
    }
 
-   const currentPost = posts.slice(0, 5)
-   console.log(currentPost);
 
    return (
       <div className="Main">
@@ -41,16 +42,17 @@ export const Wall = () => {
 
 
             {
-               posts.map((el, index) =>
+               currentPost.map((el, index) =>
                   el &&
-                  <div className="postOnMyWall" >
+                  <div key={index} className="postOnMyWall" >
                      <img src={MyAvatar} alt="" />
                      <p>{el}</p>
                   </div>
                )
             }
             {
-               posts.length >= 5 && <Paginator arr={posts} paginate={paginate} />
+               posts.length >= 5 && <Paginator postsPerPage={postsPerPage} posts={posts}
+                  paginate={paginate} />
             }
 
          </div>

@@ -1,0 +1,18 @@
+
+.paginator {
+   ul {
+      list-style-type: none;
+
+      li {
+         display: inline-block;
+         margin-right: 4px;
+         background-color: rgba(134, 231, 231, 0.616);
+         padding: 3px 6px;
+         border: 2px solid rgba(23, 170, 214, 0.945);
+         cursor: pointer;
+         &:hover{
+            border: 2px solid rgba(20, 127, 160, 0.945);
+         }
+      }
+   }
+}

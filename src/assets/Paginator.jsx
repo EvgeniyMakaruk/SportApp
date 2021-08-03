@@ -1,13 +1,14 @@
 import React from 'react'
+import s from './Paginator.module.scss'
 
-export const Paginator = ({ arr, paginate }) => {
+export const Paginator = ({ postsPerPage, posts, paginate }) => {
    const pageNumbers = []
 
-   for (let i = 1; i <= Math.ceil((arr.length / 5)); i++) {
+   for (let i = 1; i <= Math.ceil((posts.length / postsPerPage)); i++) {
       pageNumbers.push(i)
    }
    return (
-      <div>
+      <div className={s.paginator}>
          <ul className="pagination">
             {
                pageNumbers.map(number => (

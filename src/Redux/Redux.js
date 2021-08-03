@@ -1,0 +1,9 @@
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { wallRed } from "./Reducers/WallRed";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from "redux-thunk";
+
+export const rootReducer = combineReducers({
+   wallRed,
+})
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
