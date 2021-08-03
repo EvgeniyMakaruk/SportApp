@@ -56,14 +56,13 @@ body {
       p {
          color: $colorOfFonts;
       }
-      .deleteALlposts{
-            @extend %WallButton;
-            height: 27px;
-            &:hover{
-               background-color: $mainColor1;
-               border: 2px solid rgb(140, 212, 229);
-            }
-
+      .deleteALlposts {
+         @extend %WallButton;
+         height: 27px;
+         &:hover {
+            background-color: $mainColor1;
+            border: 2px solid rgb(140, 212, 229);
+         }
       }
       form {
          input {
@@ -106,12 +105,39 @@ body {
 .Todo {
    width: 100%;
    height: 800px;
-   background: rgb(148, 124, 138);
+   background: rgb(185, 172, 172);
+   ul {
+      margin: 0;
+      text-align: center;
+      li {
+         text-decoration: none;
+         border: none;
+         display: inline-block;
+         font-size: 18px;
+         color: $colorOfFonts;
+         cursor: pointer;
+         background-color: rgb(155, 189, 166);
+         padding: 8px 20px;
+         border-radius: 15px;
+         border: 2px solid rgb(35, 126, 70);
+         margin-top: 15px;
+         margin-right: 15px;
+
+         a {
+            text-decoration: none;
+            color: $colorOfFonts;
+         }
+         &:hover {
+            background-color: rgba(182, 207, 194, 0.705);
+         }
+      }
+   }
 }
 .postOnMyWall {
    display: flex;
    justify-content: space-between;
    max-width: 40%;
+
    img {
       max-width: 70px;
       max-height: 70px;
@@ -131,10 +157,9 @@ body {
       }
    }
 }
-.deleteALlposts{
-   button{
+.deleteALlposts {
+   button {
       @extend %WallButton;
       height: 200px;
    }
-   
 }
