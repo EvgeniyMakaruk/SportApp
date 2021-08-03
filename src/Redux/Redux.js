@@ -7,3 +7,4 @@ export const rootReducer = combineReducers({
    wallRed,
 })
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
+window.store = store

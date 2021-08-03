@@ -2,7 +2,8 @@ import React from 'react'
 const ADD_POSTS = 'ADD_POSTS'
 
 const initialState = {
-   posts: []
+   posts: [],
+   
 }
 
 export const wallRed = (state = initialState, action) => {
@@ -11,7 +12,7 @@ export const wallRed = (state = initialState, action) => {
          return {
             ...state,
             posts: [
-               // ...state.posts, posts.action
+               ...state.posts, action.payload
             ]
          }
       }

@@ -1,17 +1,25 @@
 import React from 'react'
 import MyAvatar from '../images/MyAvatar.jpg'
 import { Paginator } from '../assets/Paginator'
+import { useDispatch, useSelector } from 'react-redux'
+import { WallAC } from '../Redux/ActionCreators/WallAC'
 
 export const Wall = () => {
 
-   const [posts, setPosts] = React.useState([])
+   const dispatch = useDispatch()
+
+   const { posts } = useSelector(store => store.wallRed)
+
+
+
+
    const [value, setValue] = React.useState('')
    const prevDef = (event) => {
       event.preventDefault()
-      setPosts([...posts, value])
+      dispatch(WallAC(value))
       setValue('')
    }
-
+   console.log(posts);
 
    const [currentPage, setCurrentPage] = React.useState(1)
    const [postsPerPage] = React.useState(5)
