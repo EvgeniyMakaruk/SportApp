@@ -1,34 +1,38 @@
 import React from 'react'
 import MyAvatar from '../images/MyAvatar.jpg'
-import { Paginator } from '../assets/Paginator'
+import { Paginator } from '../assets/Paginator/Paginator'
 import { useDispatch, useSelector } from 'react-redux'
-import { WallAC } from '../Redux/ActionCreators/WallAC'
+import { addPost, deletePost, toggleModal } from '../Redux/ActionCreators/WallAC'
+import { Modal } from '../assets/Modal/Modal'
 
 export const Wall = () => {
 
    const dispatch = useDispatch()
 
-   const { posts } = useSelector(store => store.wallRed)
-
-
-
-
+   const { posts, isOpenModal } = useSelector(store => store.wallRed)
+   console.log(posts);
    const [value, setValue] = React.useState('')
    const prevDef = (event) => {
       event.preventDefault()
-      dispatch(WallAC(value))
+      dispatch(addPost(value))
       setValue('')
    }
-   console.log(posts);
+
+
+
+
 
    const [currentPage, setCurrentPage] = React.useState(1)
    const [postsPerPage] = React.useState(5)
    const LastPostIndex = currentPage * postsPerPage
    const firstPostIndex = LastPostIndex - postsPerPage
    const currentPost = posts.slice(firstPostIndex, LastPostIndex)
+
    const paginate = (pageNumber) => {
       setCurrentPage(pageNumber)
    }
+
+
 
 
    return (
@@ -40,6 +44,8 @@ export const Wall = () => {
             </p>
             <form action="" onSubmit={prevDef}>
                <input
+                  type='"text'
+                  required
                   placeholder="Текст"
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
@@ -47,22 +53,26 @@ export const Wall = () => {
                <button type='submit'>Добавить</button>
             </form>
 
+            {posts.length >= 2 && <button onClick={() => dispatch(toggleModal(true))} className="deleteALlposts">Удалить все посты</button>}
 
+            {currentPost.map((el, index) =>
+               el &&
+               <div key={index} className="postOnMyWall" >
+
+                  <img src={MyAvatar} alt="" />
+
+                  <p>{el}</p>
+                  <button onClick={() => dispatch(deletePost(index))}>delete</button>
+               </div>
+            )}
+
+
+            {posts.length >= 6 && <Paginator postsPerPage={postsPerPage} posts={posts}
+               paginate={paginate} />}
 
             {
-               currentPost.map((el, index) =>
-                  el &&
-                  <div key={index} className="postOnMyWall" >
-                     <img src={MyAvatar} alt="" />
-                     <p>{el}</p>
-                  </div>
-               )
+               isOpenModal && <Modal />
             }
-            {
-               posts.length >= 5 && <Paginator postsPerPage={postsPerPage} posts={posts}
-                  paginate={paginate} />
-            }
-
          </div>
 
       </div>
