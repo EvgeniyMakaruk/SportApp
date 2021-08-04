@@ -5,6 +5,9 @@ const ADD_DAILY_TODO = 'ADD_DAILY_TODO'
 const ADD_WEACLY_TODO = 'ADD_WEACLY_TODO'
 const IS_DAILY_TODOS_OPEN = 'IS_DAILY_TODOS_OPEN'
 const IS_MONTHLY_TODOS_OPEN = 'IS_MONTHLY_TODOS_OPEN'
+const DELETE_DAILY_TODO = 'DELETE_DAILY_TODO'
+const DELETE_WEAKLY_TODO = 'DELETE_WEAKLY_TODO,'
+const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED'
 
 
 export const addTodo = (payload) => ({
@@ -28,4 +31,16 @@ export const openDailyTodos = (payload) => ({
 })
 export const openMonthlyTodos = (payload) => ({
    type: IS_MONTHLY_TODOS_OPEN,
+})
+export const deleteDailyTodo = (payload) => ({
+   type: DELETE_DAILY_TODO,
+   payload
+})
+export const deleteMonthlyTodo = (payload) => ({
+   type: DELETE_WEAKLY_TODO,
+   payload
+})
+export const toggleCompleted = (payload) => ({
+   type: TOGGLE_COMPLETED,
+   payload
 })

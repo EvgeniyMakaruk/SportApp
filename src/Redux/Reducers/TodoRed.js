@@ -5,17 +5,20 @@ const ADD_DAILY_TODO = 'ADD_DAILY_TODO'
 const ADD_WEACLY_TODO = 'ADD_WEACLY_TODO'
 const IS_DAILY_TODOS_OPEN = 'IS_DAILY_TODOS_OPEN'
 const IS_MONTHLY_TODOS_OPEN = 'IS_MONTHLY_TODOS_OPEN'
+const DELETE_DAILY_TODO = 'DELETE_DAILY_TODO'
+const DELETE_WEAKLY_TODO = 'DELETE_WEAKLY_TODO,'
+const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED'
 
 const initialState = {
    daylyTodos: [
-      { completed: false, title: 'Отжаться 20 раз' },
+
    ],
    weaklyTodos: [
-      { completed: false, title: 'присесть 20 раз' },
+
    ],
    toggleTodoOpen: false,
    todoValue: '',
-   isDailyTodosOpen: false,
+   isDailyTodosOpen: true,
    isMonthlyTodosOpen: false,
 
 
@@ -57,16 +60,41 @@ export const TodoRed = (state = initialState, action) => {
          return {
             ...state,
             isDailyTodosOpen: true,
-            isMonthlyTodosOpen:false
+            isMonthlyTodosOpen: false,
+
          }
       }
       case IS_MONTHLY_TODOS_OPEN: {
          return {
             ...state,
             isMonthlyTodosOpen: true,
-            isDailyTodosOpen:false
+            isDailyTodosOpen: false,
+
          }
       }
+      case DELETE_DAILY_TODO: {
+         return {
+            ...state,
+            daylyTodos: [
+               ...state.daylyTodos.slice(0, action.payload).concat(...state.daylyTodos.slice(action.payload + 1))
+            ]
+         }
+      }
+      case DELETE_WEAKLY_TODO: {
+         return {
+            ...state,
+            weaklyTodos: [
+               ...state.weaklyTodos.slice(0, action.payload).concat(...state.weaklyTodos.slice(action.payload + 1))
+            ]
+         }
+      }
+      case TOGGLE_COMPLETED: {
+         return {
+            ...state,
+
+         }
+      }
+
       default:
          return state
    }

@@ -13,31 +13,24 @@ export const NewTargets = () => {
 
    const { daylyTodos, toggleTodoOpen, weaklyTodos, isDailyTodosOpen, isMonthlyTodosOpen } = useSelector(store => store.TodoRed)
 
-   const dailyTodoArr = []
-   const weaklyTodoArr = []
 
-   {
-      weaklyTodos.forEach((el, index) => {
-         if (el.title.length !== 0) {
-            weaklyTodoArr.push(el)
-         }
-      })
-   }
-
-   {
-      daylyTodos.forEach((el, index) => {
-         if (el.title.length !== 0) {
-            dailyTodoArr.push(el)
-         }
-      })
-   }
 
 
    const prevDefTodo = (e) => {
       e.preventDefault()
       dispatch(isAddTodoOpen(value))
       setvalue('')
+   }
 
+   const dispatchDailyTodo=(str)=>{
+      if(str.length!==0){
+         dispatch(addDailyTodo(value))
+      }
+   }
+   const dispatchWeaclyTodo=(str)=>{
+      if(str.length!==0){
+         dispatch(addWeaclyTodo(value))
+      }
    }
    const [value, setvalue] = React.useState('')
 
@@ -55,18 +48,18 @@ export const NewTargets = () => {
 
             {
                !toggleTodoOpen && <>
-                  <button type='submit' onClick={() => dispatch(addDailyTodo(value))}>На день</button>
-                  <button onClick={() => dispatch(addWeaclyTodo(value))}>На неделю</button>
+                  <button onClick={() =>dispatchDailyTodo(value) }>На день</button>
+                  <button onClick={() => dispatchWeaclyTodo(value)}>На неделю</button>
                   <button onClick={() => setvalue('')}>Очистить</button>
                </>
             }
          </form>
          <div className="openTasksButtons">
-            <button onClick={() => dispatch(openDailyTodos())}>Задачи на день</button>
-            <button onClick={() => dispatch(openMonthlyTodos())}>Задачи на неделю</button>
+            <button onClick={() => dispatch(openDailyTodos())}>Задачи на день  <strong>{daylyTodos.length}</strong></button>
+            <button onClick={() => dispatch(openMonthlyTodos())}>Задачи на неделю  <strong>{weaklyTodos.length}</strong></button>
          </div>
-         {isDailyTodosOpen && <DailyTargets dailyTodoArr={dailyTodoArr} />}
-         {isMonthlyTodosOpen && <WeaklyTargets weaklyTodoArr={weaklyTodoArr} />}
+         {isDailyTodosOpen && <DailyTargets daylyTodos={daylyTodos} />}
+         {isMonthlyTodosOpen && <WeaklyTargets weaklyTodos={weaklyTodos} />}
 
       </div>
    )
