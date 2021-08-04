@@ -7,9 +7,12 @@ const initialState = {
    daylyTodos: [
       { completed: false, title: 'Отжаться 20 раз' },
    ],
-   toggleTodoOpen: true,
+   weaklyTodos: [
+      { completed: false, title: 'присесть 20 раз' },
+   ],
+   toggleTodoOpen: false,
    todoValue: '',
-   listTodos: [],
+   
 
 
 }
@@ -24,7 +27,7 @@ export const TodoRed = (state = initialState, action) => {
       case IS_ADD_OPEN: {
          return {
             ...state,
-            toggleTodoOpen: action.payload
+            toggleTodoOpen: false
          }
       }
       case CHANGE_VALUE_TODO: {
@@ -34,8 +37,8 @@ export const TodoRed = (state = initialState, action) => {
             daylyTodos: [
                ...state.daylyTodos, { completed: false, title: action.payload }
             ],
-            
-            
+
+
 
 
 

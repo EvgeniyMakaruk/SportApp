@@ -24,7 +24,9 @@ export const NewTargets = () => {
 
    const prevDefTodo = (e) => {
       e.preventDefault()
-      
+      dispatch(isAddTodoOpen(value))
+      setvalue('')
+
    }
    const [value, setvalue] = React.useState('')
 
@@ -38,32 +40,29 @@ export const NewTargets = () => {
                onChange={(event) => setvalue(event.target.value)}
             />
 
-            {toggleTodoOpen && <button onClick={() => dispatch(isAddTodoOpen(false))}>Добавить</button>}
+            {/* {toggleTodoOpen && <button onClick={() => dispatch(isAddTodoOpen(false))}>Добавить</button>} */}
 
             {
                !toggleTodoOpen && <>
                   <button type='submit' onClick={() => dispatch(changeFormTodo(value))}>На день</button>
                   <button  >На неделю</button>
-                  <button onClick={() => dispatch(isAddTodoOpen(true))}>Отмена</button>
+                  <button onClick={() => setvalue('')}>Очистить</button>
                </>
             }
-
-
-
          </form>
-         {
-
-            todoArr.map((el, index) =>
-               <div key={index} className="TodoTargets">
-                  <p>{el.title}</p>
-                  <div>
-                     <button>отменить</button>
-                     <button>	сделано</button>
+         <div>
+            {
+               todoArr.map((el, index) =>
+                  <div key={index} className="TodoTargets">
+                     <p>{el.title}</p>
+                     <div>
+                        <button>отменить</button>
+                        <button>	сделано</button>
+                     </div>
                   </div>
-               </div>
-            )
-         }
-
+               )
+            }
+         </div>
       </div>
    )
 }
