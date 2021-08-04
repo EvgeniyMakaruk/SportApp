@@ -1,22 +1,33 @@
 import React from 'react'
-import { changeFormTodo, isAddTodoOpen } from '../../Redux/ActionCreators/TodoAC'
+import { addDailyTodo, addWeaclyTodo, isAddTodoOpen, openDailyTodos, openMonthlyTodos } from '../../Redux/ActionCreators/TodoAC'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Targets.scss'
+import { DailyTargets } from './DailyTargets2'
+import { WeaklyTargets } from './WeaklyTargets'
 
 
 export const NewTargets = () => {
 
    const dispatch = useDispatch()
 
-   const { daylyTodos, toggleTodoOpen, todoValue } = useSelector(store => store.TodoRed)
+   const { daylyTodos, toggleTodoOpen, weaklyTodos, isDailyTodosOpen, isMonthlyTodosOpen } = useSelector(store => store.TodoRed)
 
-   const todoArr = []
-   console.log(todoArr);
+   const dailyTodoArr = []
+   const weaklyTodoArr = []
+
+   {
+      weaklyTodos.forEach((el, index) => {
+         if (el.title.length !== 0) {
+            weaklyTodoArr.push(el)
+         }
+      })
+   }
+
    {
       daylyTodos.forEach((el, index) => {
          if (el.title.length !== 0) {
-            todoArr.push(el)
+            dailyTodoArr.push(el)
          }
       })
    }
@@ -40,29 +51,23 @@ export const NewTargets = () => {
                onChange={(event) => setvalue(event.target.value)}
             />
 
-            {/* {toggleTodoOpen && <button onClick={() => dispatch(isAddTodoOpen(false))}>Добавить</button>} */}
+
 
             {
                !toggleTodoOpen && <>
-                  <button type='submit' onClick={() => dispatch(changeFormTodo(value))}>На день</button>
-                  <button  >На неделю</button>
+                  <button type='submit' onClick={() => dispatch(addDailyTodo(value))}>На день</button>
+                  <button onClick={() => dispatch(addWeaclyTodo(value))}>На неделю</button>
                   <button onClick={() => setvalue('')}>Очистить</button>
                </>
             }
          </form>
-         <div>
-            {
-               todoArr.map((el, index) =>
-                  <div key={index} className="TodoTargets">
-                     <p>{el.title}</p>
-                     <div>
-                        <button>отменить</button>
-                        <button>	сделано</button>
-                     </div>
-                  </div>
-               )
-            }
+         <div className="openTasksButtons">
+            <button onClick={() => dispatch(openDailyTodos())}>Задачи на день</button>
+            <button onClick={() => dispatch(openMonthlyTodos())}>Задачи на неделю</button>
          </div>
+         {isDailyTodosOpen && <DailyTargets dailyTodoArr={dailyTodoArr} />}
+         {isMonthlyTodosOpen && <WeaklyTargets weaklyTodoArr={weaklyTodoArr} />}
+
       </div>
    )
 }
