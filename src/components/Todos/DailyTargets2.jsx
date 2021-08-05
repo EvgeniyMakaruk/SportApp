@@ -9,6 +9,7 @@ export const DailyTargets = ({ daylyTodos }) => {
 
 
 
+
    return (
       <div>
          <h3>Задачи на день</h3>
@@ -32,4 +33,4 @@ export const DailyTargets = ({ daylyTodos }) => {
       </div>
    )
 }
-//
+//() => dispatch(toggleCompleted(index))

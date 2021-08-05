@@ -9,6 +9,7 @@ const DELETE_DAILY_TODO = 'DELETE_DAILY_TODO'
 const DELETE_WEAKLY_TODO = 'DELETE_WEAKLY_TODO,'
 const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED'
 const ADD_COMPLETED = 'ADD_COMPLETED'
+const UNICK_TODOS='UNICK_TODOS'
 
 export const addTodo = (payload) => ({
    type: ADD_TODO,
@@ -48,5 +49,10 @@ export const addCompleted = (payload) => ({
    type: ADD_COMPLETED,
    payload
 })
+export const addUnicTodos = (payload) => ({
+   type: UNICK_TODOS,
+   payload
+})
+
 
 
