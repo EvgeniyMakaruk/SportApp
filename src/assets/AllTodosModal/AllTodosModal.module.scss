@@ -1,0 +1,40 @@
+.modal{
+   width: 655px;
+   height: 700px;
+   background-color: rgb(19, 130, 163);
+   margin: 0 auto;
+   position: absolute;
+   transform: translate(23%,-7%);
+   border-radius: 30px;
+   h4{
+      font-size: 24px;
+      color: rgb(8, 194, 17);
+      margin: 0;
+      margin-top: 25px;
+   }
+   p{
+      width: 450px;
+      height: 33px;
+      font-size: 20px;
+      border-radius: 15px;
+      background-color: rgb(8, 194, 17);
+      margin: 0 auto;
+      margin-bottom: 10px;
+      &:first-child{
+         margin-top: 25px;
+      }
+   }
+   button{
+      position: absolute;
+      bottom: 10px;
+      left: 47%;
+      height: 30px;
+      width: 100px;
+      border: 2px solid rgba(23, 170, 214, 0.945);
+      background-color: rgb(140, 212, 229);
+      border-radius: 10px;
+      padding: 2px 7px;
+      cursor: pointer;
+      margin-bottom: 16px;
+   }
+}

@@ -10,6 +10,7 @@ const DELETE_WEAKLY_TODO = 'DELETE_WEAKLY_TODO,'
 const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED'
 const ADD_COMPLETED = 'ADD_COMPLETED'
 const UNICK_TODOS = 'UNICK_TODOS'
+const OPEN_ALL_TODOS = 'OPEN_ALL_TODOS'
 
 
 const initialState = {
@@ -20,7 +21,8 @@ const initialState = {
    isDailyTodosOpen: true,
    isMonthlyTodosOpen: false,
    allCompletedTodos: [],
-   unickTodos: []
+   unickTodos: [],
+   
 
 
 }
@@ -125,7 +127,9 @@ export const TodoRed = (state = initialState, action) => {
          return {
             ...state,
             unickTodos: [
-                ...state.unickTodos, {completed:true, title:action.payload}
+               ...state.unickTodos, action.payload.map(el => {
+                  return { completed: true, title: el.title }
+               })
             ]
 
 

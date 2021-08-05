@@ -1,37 +1,31 @@
 import React from 'react'
-import { addDailyTodo, addUnicTodos, addWeaclyTodo, isAddTodoOpen, openDailyTodos, openMonthlyTodos } from '../../Redux/ActionCreators/TodoAC'
+import { addDailyTodo, addUnicTodos, addWeaclyTodo, isAddTodoOpen, openAllTodos, openDailyTodos, openMonthlyTodos } from '../../Redux/ActionCreators/TodoAC'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Targets.scss'
 import { DailyTargets } from './DailyTargets2'
 import { WeaklyTargets } from './WeaklyTargets'
+import { AllTodosModal } from '../../assets/AllTodosModal/AllTodosModal'
 
 
 export const NewTargets = () => {
 
    const dispatch = useDispatch()
 
-   const { daylyTodos, toggleTodoOpen, weaklyTodos, unickTodos,
+   const { daylyTodos, toggleTodoOpen, weaklyTodos, unickTodos, isAllTodoOpen,
       isDailyTodosOpen, isMonthlyTodosOpen, allCompletedTodos } = useSelector(store => store.TodoRed)
 
    let answer = [];
    allCompletedTodos.forEach(x => {
       if (!answer.some(y => JSON.stringify(y) === JSON.stringify(x))) {
          answer.push(x)
-         
       }
    })
 
-   React.useEffect(() => {
-      if (answer.length>=1) {
-         answer.forEach(el => dispatch(addUnicTodos(el.title)))
-      }
-     }, [answer.length])
-
-   console.log(unickTodos);
+   const allTodos = answer.length
 
 
-   const allTodos = allCompletedTodos.length
+
 
    const prevDefTodo = (e) => {
       e.preventDefault()
@@ -51,11 +45,16 @@ export const NewTargets = () => {
    }
    const [value, setvalue] = React.useState('')
 
+   const [allTodoOpen, setallTodoOpen] = React.useState(false)
+
+
    return (
 
-
       <div className="newTargets">
-         <li>Выполненные задачи <strong>{allTodos}</strong></li>
+
+         <li onClick={()=>setallTodoOpen(true)}>Выполненные задачи <strong>{allTodos}</strong></li>
+         {allTodoOpen && <AllTodosModal allTotos={answer} setallTodoOpen={setallTodoOpen} />}
+
          <form action="" onSubmit={prevDefTodo}>
             <input
                required

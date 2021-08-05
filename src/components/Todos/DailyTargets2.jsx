@@ -23,7 +23,8 @@ export const DailyTargets = ({ daylyTodos }) => {
                   <p>{el.title}</p>
                   <div>
                      <button onClick={() => dispatch(deleteDailyTodo(index))}>отменить</button>
-                     <button onClick={() => dispatch(toggleCompleted(index))}>сделано</button>
+                     <button disabled={el.completed} onClick={() => dispatch(toggleCompleted(index))}
+                     >сделано</button>
                   </div>
                </div>
 
