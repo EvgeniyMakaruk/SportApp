@@ -7,8 +7,7 @@ export const Todo = () => {
    return (
       <div className="Todo">
          <ul>
-            <li>Новые цели</li>
-            <li>Посмотреть цели</li>
+
             <NewTargets/>
             
 

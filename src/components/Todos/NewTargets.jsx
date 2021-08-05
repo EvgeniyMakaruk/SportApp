@@ -35,7 +35,10 @@ export const NewTargets = () => {
    const [value, setvalue] = React.useState('')
 
    return (
+
+      
       <div className="newTargets">
+         <li>Выполненные задачи</li>
          <form action="" onSubmit={prevDefTodo}>
             <input
                required

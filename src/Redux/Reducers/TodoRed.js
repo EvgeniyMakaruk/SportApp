@@ -8,6 +8,7 @@ const IS_MONTHLY_TODOS_OPEN = 'IS_MONTHLY_TODOS_OPEN'
 const DELETE_DAILY_TODO = 'DELETE_DAILY_TODO'
 const DELETE_WEAKLY_TODO = 'DELETE_WEAKLY_TODO,'
 const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED'
+const ADD_COMPLETED = 'ADD_COMPLETED'
 
 const initialState = {
    daylyTodos: [
@@ -20,7 +21,7 @@ const initialState = {
    todoValue: '',
    isDailyTodosOpen: true,
    isMonthlyTodosOpen: false,
-
+   allCompletedTodos: []
 
 
 }
@@ -91,9 +92,38 @@ export const TodoRed = (state = initialState, action) => {
       case TOGGLE_COMPLETED: {
          return {
             ...state,
+            daylyTodos: [
+               ...state.daylyTodos.map((el, index) => {
+                  if (index === action.payload) {
+                     el.completed = !el.completed
+                     state.allCompletedTodos.push({ completed: true, title: el.title })
+                  }
+                  
+                  
+                  return el
+               })
+            ],
 
          }
       }
+      case ADD_COMPLETED: {
+         return {
+            ...state,
+            weaklyTodos: [
+               ...state.weaklyTodos.map((el, index) => {
+                  if (index === action.payload) {
+                     el.completed = !el.completed
+                     state.allCompletedTodos.push({ completed: true, title: el.title })
+                  }
+                  
+                  
+                  return el
+               })
+            ],
+
+         }
+      }
+
 
       default:
          return state

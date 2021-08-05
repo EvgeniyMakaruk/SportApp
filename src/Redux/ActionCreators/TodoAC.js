@@ -8,7 +8,7 @@ const IS_MONTHLY_TODOS_OPEN = 'IS_MONTHLY_TODOS_OPEN'
 const DELETE_DAILY_TODO = 'DELETE_DAILY_TODO'
 const DELETE_WEAKLY_TODO = 'DELETE_WEAKLY_TODO,'
 const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED'
-
+const ADD_COMPLETED = 'ADD_COMPLETED'
 
 export const addTodo = (payload) => ({
    type: ADD_TODO,
@@ -44,3 +44,9 @@ export const toggleCompleted = (payload) => ({
    type: TOGGLE_COMPLETED,
    payload
 })
+export const addCompleted = (payload) => ({
+   type: ADD_COMPLETED,
+   payload
+})
+
+
