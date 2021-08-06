@@ -12,7 +12,9 @@ export const SeartchRed = (state = initialState, action) => {
       case GET_ASYNC_POSTS: {
          return {
             ...state,
-            asyncPosts: [...state.asyncPosts, ...action.payload]
+            asyncPosts: [
+            ...state.asyncPosts, ...action.payload
+            ]
          }
       }
 
