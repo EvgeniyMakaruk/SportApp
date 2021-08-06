@@ -2,6 +2,8 @@ import React from 'react'
 const GET_ASYNC_POSTS = 'GET_ASYNC_POSTS'
 const REMOVE_POST = 'REMOVE_POST'
 const REPOST_POST = 'REPOST_POST'
+const DELETE_REPOST_POST='DELETE_REPOST_POST'
+const DELETE_ALL_REPOST_POST='DELETE_ALL_REPOST_POST'
 
 
 const initialState = {
@@ -38,7 +40,22 @@ export const SeartchRed = (state = initialState, action) => {
 
          }
       }
-
+      case DELETE_REPOST_POST: {
+         return {
+            ...state,
+            addRepostPost: [
+               ...state.addRepostPost.filter((n,index) => index !== action.payload)
+            ]
+         }
+      }
+      case DELETE_ALL_REPOST_POST: {
+         return {
+            ...state,
+            addRepostPost: [
+               
+            ]
+         }
+      }
       default:
          return state
    }

@@ -1,23 +1,21 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteAllRepostPost, deleteRepostPost } from '../Redux/ActionCreators/SeartchAC'
 
 export const Reposts = () => {
 
    const { addRepostPost } = useSelector(store => store.SeartchRed)
-   let unickRepost = [];
-   addRepostPost.forEach(x => {
-      if (!unickRepost.some(y => JSON.stringify(y) === JSON.stringify(x))) {
-         unickRepost.push(x)
-      }
-   })
+   const dispatch = useDispatch()
 
 
 
-   console.log(unickRepost);
+
    return (
       <div className="reposts">
+
+         {addRepostPost && <button onClick={()=>dispatch(deleteAllRepostPost())} className="reposDeleteAll">Удалить все</button>}
          {
-            unickRepost.map(el =>
+            addRepostPost.map((el, index) =>
                <div className="renderUnicPosts">
 
                   <div>
@@ -25,7 +23,7 @@ export const Reposts = () => {
                      <p>{el.title}</p>
 
                   </div>
-                  <button >удалить</button>
+                  <button onClick={() => dispatch(deleteRepostPost(index))} >удалить</button>
                </div>
 
 
