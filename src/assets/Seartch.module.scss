@@ -1,0 +1,50 @@
+.seartch {
+   width: 100%;
+   min-height: 1000px;
+   background: rgb(185, 172, 172);
+   padding-top: 20px;
+   padding-bottom: 20px;
+
+   .seartch__postList {
+      display: flex;
+      width: 900px;
+      margin-left: 30px;
+      border: 2px solid rgb(88, 88, 88);
+      border-radius: 10px;
+      margin-bottom: 20px;
+
+      h3 {
+         color: rgba(73, 75, 77, 0.555);
+         margin: 0;
+         padding-top: 20px;
+         margin-left: 14px;
+      }
+      p {
+         margin-top: 10px;
+         margin-bottom: 0px;
+         margin-left: 14px;
+         padding-bottom: 10px;
+      }
+      button {
+         height: 30px;
+         margin-right: 10px;
+         margin-top: 40px;
+         background-color: rgb(36, 223, 29);
+         border: 2px solid rgb(61, 60, 60);
+         border-radius: 5px;
+         cursor: pointer;
+         &:hover{
+            background-color: rgb(9, 255, 0);
+         }
+         &:last-child {
+            background-color: rgb(199, 17, 17);
+            border: 2px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover{
+               background-color: rgb(255, 0, 0);
+            }
+         }
+      }
+   }
+}
