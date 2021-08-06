@@ -11,7 +11,7 @@ export const Seartch = () => {
 
    const [currentPage, setcurrentPage] = useState(1)
    const [fetching, setfetching] = useState(true)
-   const [totalCount, settotalCount] = useState(0)
+
 
 
    const { asyncPosts, deletePostId, addRepostPost } = useSelector(store => store.SeartchRed)
@@ -41,7 +41,7 @@ export const Seartch = () => {
       if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
          setfetching(true)
 
-         
+
       }
 
    }
@@ -51,23 +51,25 @@ export const Seartch = () => {
 
 
    return (
-
-      <div className={s.seartch}>
-         {currentPage >3  && <a href="#" title="Вернуться к началу" className={s.topbutton}>Наверх</a>}
-         {
-            asyncPosts.map(el =>
-               <div className={s.seartch__postList}>
-                  <div>
-                     <h3>{el.email}</h3>
-                     <p>{el.body}</p>
-                  </div>
-                  <button onClick={() => dispatch(repostPost(el))}  >Репост</button>
-                  <button onClick={() => dispatch(removePost(el.id))}>Удалить</button>
-               </div>
-            )
-         }
-
-
+      
+      <div className = { s.seartch } >
+         
+         { currentPage> 2 && <a href="#" title="Вернуться к началу" className={s.topbutton}>Наверх</a>
+}
+{
+   asyncPosts.map(el =>
+      <div className={s.seartch__postList}>
+         <div>
+            <h3>{el.email}</h3>
+            <p>{el.body}</p>
+         </div>
+         <button onClick={() => dispatch(repostPost(el))}  >Репост</button>
+         <button onClick={() => dispatch(removePost(el.id))}>Удалить</button>
       </div>
+   )
+}
+
+
+      </div >
    )
 }

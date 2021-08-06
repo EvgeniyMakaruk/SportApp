@@ -13,7 +13,8 @@ export const Reposts = () => {
    return (
       <div className="reposts">
 
-         {addRepostPost && <button onClick={()=>dispatch(deleteAllRepostPost())} className="reposDeleteAll">Удалить все</button>}
+         {addRepostPost.length>=2 && <button onClick={() => dispatch(deleteAllRepostPost())} className="reposDeleteAll">Удалить все</button>}
+         {addRepostPost.length === 0 && <p className="NoReposts">У вас нету репостов</p>}
          {
             addRepostPost.map((el, index) =>
                <div className="renderUnicPosts">

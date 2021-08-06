@@ -39,9 +39,12 @@ export const Wall = () => {
       <div className="Main">
          <div className="Main__me">
             <img src={MyAvatar} alt="" />
-            <p>Привет меня зовут Женя и это моя страница <br />
-               с спортивными достижениями
+            <p className="MyNameIs">Привет меня зовут Женя и это моя страница <br />
+              
             </p>
+            {
+               isOpenModal && <Modal />
+            }
             <form action="" onSubmit={prevDef}>
                <input
                   type='"text'
@@ -70,9 +73,7 @@ export const Wall = () => {
             {posts.length >= 6 && <Paginator postsPerPage={postsPerPage} posts={posts}
                paginate={paginate} />}
 
-            {
-               isOpenModal && <Modal />
-            }
+
          </div>
 
       </div>

@@ -36,5 +36,8 @@
       padding: 2px 7px;
       cursor: pointer;
       margin-bottom: 16px;
+      &:hover{
+         background-color: rgb(64, 188, 216);
+      }
    }
 }
