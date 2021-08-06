@@ -9,7 +9,7 @@ export const Seartch = () => {
 
    const dispatch = useDispatch()
 
-   const [currentPage, setcurrentPage] = useState(2)
+   const [currentPage, setcurrentPage] = useState(1)
    const [fetching, setfetching] = useState(true)
    const [totalCount, settotalCount] = useState(0)
 
@@ -20,10 +20,10 @@ export const Seartch = () => {
          fetch(`https://jsonplaceholder.typicode.com/comments?_limit=10_page=${currentPage}`)
             .then(response => response.json())
             .then(json => dispatch(getAsyncPosts(json)))
-         setcurrentPage(prevState=>prevState+1)
+         setcurrentPage(prevState => prevState + 1)
          setfetching(false)
-         
-         
+
+
 
       }
    }, [fetching])
@@ -41,7 +41,7 @@ export const Seartch = () => {
       if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
          setfetching(true)
 
-
+         
       }
 
    }
@@ -51,8 +51,9 @@ export const Seartch = () => {
 
 
    return (
-      <div className={s.seartch}>
 
+      <div className={s.seartch}>
+         {currentPage >3  && <a href="#" title="Вернуться к началу" className={s.topbutton}>Наверх</a>}
          {
             asyncPosts.map(el =>
                <div className={s.seartch__postList}>
