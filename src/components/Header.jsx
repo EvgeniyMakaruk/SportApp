@@ -9,9 +9,9 @@ export const Header = () => {
          <ul>
             <li><Link to="/">Стена</Link></li>
             <li><Link to='/Todo'>Список дел</Link></li>
-            <li><Link>Истории</Link></li>
-            <li><Link>Избранное</Link></li>
-            <li><Link>Контакты</Link></li>
+            <li><Link to='seartch'>Поиск</Link></li>
+            {/* <li><Link>Избранное</Link></li>
+            <li><Link>Контакты</Link></li> */}
          </ul>
       </div>
    )

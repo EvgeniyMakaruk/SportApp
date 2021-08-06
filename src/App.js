@@ -4,6 +4,7 @@ import { Wall } from './components/Wall';
 import { Footer } from './components/Footer';
 import { Route } from 'react-router';
 import { Todo } from './components/Todo';
+import { Seartch } from './components/Seartch';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 
       <Route exact path='/' component={Wall}/>
       <Route exact path='/Todo' component={Todo}/>
+      <Route exact path='/seartch' component={Seartch}/>
     
       <Footer/>
       
@@ -20,3 +22,4 @@ function App() {
 }
 
 export default App;
+//seartch
