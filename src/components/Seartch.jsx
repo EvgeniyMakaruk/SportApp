@@ -11,17 +11,19 @@ export const Seartch = () => {
 
    const [currentPage, setcurrentPage] = useState(1)
    const [fetching, setfetching] = useState(true)
-
+   const [isPostsLoading, setisPostsLoading] = useState(false)
 
 
    const { asyncPosts, deletePostId, addRepostPost } = useSelector(store => store.SeartchRed)
    React.useEffect(() => {
       if (fetching) {
+         setisPostsLoading(true)
          fetch(`https://jsonplaceholder.typicode.com/comments?_limit=10_page=${currentPage}`)
             .then(response => response.json())
             .then(json => dispatch(getAsyncPosts(json)))
          setcurrentPage(prevState => prevState + 1)
          setfetching(false)
+         setisPostsLoading(false)
 
 
 
@@ -51,24 +53,24 @@ export const Seartch = () => {
 
 
    return (
-      
-      <div className = { s.seartch } >
-         
-         { currentPage> 2 && <a href="#" title="Вернуться к началу" className={s.topbutton}>Наверх</a>
-}
-{
-   asyncPosts.map(el =>
-      <div className={s.seartch__postList}>
-         <div>
-            <h3>{el.email}</h3>
-            <p>{el.body}</p>
-         </div>
-         <button onClick={() => dispatch(repostPost(el))}  >Репост</button>
-         <button onClick={() => dispatch(removePost(el.id))}>Удалить</button>
-      </div>
-   )
-}
 
+      <div className={s.seartch} >
+
+         {currentPage > 2 && <a href="#" title="Вернуться к началу" className={s.topbutton}>Наверх</a>
+         }
+         {
+            asyncPosts.map(el =>
+               <div className={s.seartch__postList}>
+                  <div>
+                     <h3>{el.email}</h3>
+                     <p>{el.body}</p>
+                  </div>
+                  <button onClick={() => dispatch(repostPost(el))}  >Репост</button>
+                  <button onClick={() => dispatch(removePost(el.id))}>Удалить</button>
+               </div>
+            )
+         }
+         <p className={s.loading}>Загрузка ....</p>
 
       </div >
    )
