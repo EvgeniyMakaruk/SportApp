@@ -8,8 +8,12 @@ import { Modal } from '../assets/Modal/Modal'
 export const Wall = () => {
 
    const dispatch = useDispatch()
+   
 
    const { posts, isOpenModal } = useSelector(store => store.wallRed)
+
+
+
    console.log(posts);
    const [value, setValue] = React.useState('')
    const prevDef = (event) => {
